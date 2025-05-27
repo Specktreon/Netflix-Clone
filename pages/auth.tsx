@@ -1,29 +1,30 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { NextPageContext } from "next";
-import { getSession, signIn } from "next-auth/react";
+// import { NextPageContext } from "next";
+// import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { signIn } from "next-auth/react";
 
 import Input from "@/components/Input";
 
-export async function getServerSideProps(context: NextPageContext) {
-  const session = await getSession(context);
+// export async function getServerSideProps(context: NextPageContext) {
+//   const session = await getSession(context);
 
-  if (session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+//   if (session) {
+//     return {
+//       redirect: {
+//         destination: "/",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: {},
-  };
-}
+//   return {
+//     props: {},
+//   };
+// }
 
 const Auth = () => {
   const router = useRouter();
@@ -49,7 +50,7 @@ const Auth = () => {
         callbackUrl: "/",
       });
 
-      router.push("/profiles");
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +66,7 @@ const Auth = () => {
 
       login();
     } catch (error) {
-      console.log(error);
+      console.log("Registration error:", error.response?.data || error.message);
     }
   }, [email, name, password, login]);
 
@@ -93,7 +94,7 @@ const Auth = () => {
               <Input
                 id="email"
                 type="email"
-                label="Email address or phone number"
+                label="Email address"
                 value={email}
                 onChange={(e: any) => setEmail(e.target.value)}
               />
