@@ -6,12 +6,20 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log("Register API called with body:", req.body);
   try {
     if (req.method !== "POST") {
       return res.status(405).end();
     }
 
     const { email, name, password } = req.body;
+
+    // Validate required fields
+    if (!email || !name || !password) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    console.log("Checking if user exists with email:", email);
 
     const existingUser = await prismadb.user.findUnique({
       where: {
@@ -37,6 +45,7 @@ export default async function handler(
 
     return res.status(200).json(user);
   } catch (error) {
+    console.error("Register API error:", error);
     return res.status(400).json({ error: `Something went wrong: ${error}` });
   }
 }
