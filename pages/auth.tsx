@@ -66,7 +66,7 @@ const Auth = () => {
 
       login();
     } catch (error) {
-      console.log("Registration error:", error.response?.data || error.message);
+      console.log("Registration error:", error);
     }
   }, [email, name, password, login]);
 
@@ -115,14 +115,14 @@ const Auth = () => {
             <div className="flex flex-row items-center gap-4 mt-8 justify-center">
               {/* Google OAuth Login */}
               <div
-                onClick={() => signIn("google", { callbackUrl: "/profiles" })}
+                onClick={() => signIn("google", { callbackUrl: "/" })}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FcGoogle size={32} />
               </div>
               {/* GitHub OAuth Login */}
               <div
-                onClick={() => signIn("github", { callbackUrl: "/profiles" })}
+                onClick={() => signIn("github", { callbackUrl: "/" })}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FaGithub size={32} />
