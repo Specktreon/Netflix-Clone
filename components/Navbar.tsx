@@ -53,3 +53,56 @@ const Navbar = () => {
         {/* Navigation for Streaming */}
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
           <NavbarItem label="Home" />
+          <NavbarItem label="TV Shows" />
+          <NavbarItem label="Movies" />
+          <NavbarItem label="New & Popular" />
+          <NavbarItem label="My List" />
+          <NavbarItem label="Browse by Languages" />
+        </div>
+        {/*  Mobile Compatible Navigation Menu */}
+        <div
+          onMouseEnter={() => setShowMobileMenu(true)}
+          onMouseLeave={() => setShowMobileMenu(false)}
+          className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative"
+        >
+          <p className="text-white text-sm">Browse</p>
+          <RiArrowDownSFill
+            className={`text-xl text-white transition ${
+              showMobileMenu ? "rotate-180" : "rotate-0"
+            }`}
+          />
+          <MobileMenu visible={showMobileMenu} />
+        </div>
+        {/* Profile Menu */}
+        <div className="flex flex-row ml-auto gap-7 items-center">
+          {/* Search */}
+          <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
+            <IoSearch className="text-xl" />
+          </div>
+          {/* Notifications */}
+          <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
+            <FaRegBell className="text-xl" />
+          </div>
+          {/* Profile (Mobile Compatible) */}
+          <div
+            onMouseEnter={() => setShowAccountMenu(true)}
+            onMouseLeave={() => setShowAccountMenu(false)}
+            className="flex flex-row items-center gap-2 cursor-pointer relative"
+          >
+            <div className="w-4 h-4 lg:w-8 lg:h-8 rounded-md overflow-hidden">
+              <img src="/images/default-blue.png" alt="Netflix Profile Image" />
+            </div>
+            <RiArrowDownSFill
+              className={`text-xl text-white transition ${
+                showAccountMenu ? "rotate-180" : "rotate-0"
+              }`}
+            />
+            <AccountMenu visible={showAccountMenu} />
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
