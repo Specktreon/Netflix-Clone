@@ -1,6 +1,6 @@
 import useBillboard from "@/hooks/useBillboard ";
 import React, { useCallback } from "react";
-import { IoIosInformationCircleOutline } from "react-icons/io";
+// import { IoIosInformationCircleOutline } from "react-icons/io";
 // import PlayButton from "@/components/PlayButton";
 // import useInfoModal from "@/hooks/useInfoModal";
 
@@ -14,7 +14,7 @@ const Billboard = () => {
 
   return (
     <div className="relative h-[56.25vw]">
-      {/* <video
+      <video
         className="w-full h-[56.25vw] object-cover brightness-[60%]"
         autoPlay
         muted
@@ -22,7 +22,7 @@ const Billboard = () => {
         poster={data?.thumbnailUrl}
         src={data?.videoUrl}
       ></video>
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black via-transparent to-transparent"></div> */}
+      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black via-transparent to-transparent"></div>
       {/* <iframe className='video'
                     title='Youtube player'
                     sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
