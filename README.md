@@ -1,40 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Netflix Clone (Next.js, Prisma, MongoDB)
 
-## Getting Started
+A full-stack streaming-site clone built to practise authentication, server-side APIs and a database-backed UI. Learning project, not affiliated with Netflix.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Authentication** with NextAuth: email and password (bcrypt-hashed), **Google** and **GitHub** OAuth, JWT sessions.
+- **Profiles page** after sign-in, protected routes via a server-side auth helper.
+- **Billboard** with a random featured movie from the API (`/api/random`).
+- **Responsive navbar** with mobile menu and account menu.
+- Data fetching with **SWR**, global state with **Zustand**.
+
+## Tech stack
+
+Next.js (Pages Router) · React · TypeScript · Tailwind CSS · NextAuth · Prisma · MongoDB · SWR · Zustand · Axios
+
+## Project structure
+
+```
+pages/        auth, profiles, home + API routes (auth, register, current user, random movie)
+components/   Navbar, Billboard, AccountMenu, MobileMenu, Input
+hooks/        useCurrentUser, useBillboard
+lib/          Prisma client, SWR fetcher, server-side auth check
+prisma/       schema: User, Account, Session, Movie (MongoDB)
+movies.json   sample movie data
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run it locally
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Requirements: Node.js 18+ and a MongoDB database (Atlas works).
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+npm install
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+Create `.env`:
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+DATABASE_URL=mongodb+srv://...
+NEXTAUTH_SECRET=...
+NEXTAUTH_JWT_SECRET=...
+GITHUB_ID=...
+GITHUB_SECRET=...
+GOOGLE_CLIENT_ID=...
+GOOGLE_CLIENT_SECRET=...
+```
 
-## Learn More
+Then:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx prisma db push
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+Open http://localhost:3000.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Author
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Ridha Lezzar · [LinkedIn](https://linkedin.com/in/ridha-lezzar-8322222b5)
